@@ -14,16 +14,7 @@
     name: common
     tasks_from: app-pre-req
       
-
-# - name: run app pre location
-#   ansible.builtin.import.role:
-#     name: common
-#     tasks_from: app-pre-req    
-
-# - name: run app pre location
-#   ansible.builtin.import.role:
-#     name: common
-#     tasks_from: app-pre-req    
+   
 
 # # rm -rf /usr/share/nginx/html/*
 # - name: delete default website
@@ -42,12 +33,12 @@
 #     dest: /usr/share/nginx/html
 #     remote_src: yes 
 
-# - name: copy
-#   ansible.builtin.template:
-#     src: expense.conf.j2
-#     dest: /etc/nginx/default.d/expense.conf   
-#   notify:
-#   - restart nginx 
+- name: copy
+  ansible.builtin.template:
+    src: expense.conf.j2
+    dest: /etc/nginx/default.d/expense.conf   
+  notify:
+  - restart nginx 
 
 # - name: restart nginx
 #   ansible.builtin.service:
