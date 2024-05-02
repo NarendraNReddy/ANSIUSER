@@ -14,6 +14,11 @@
     name: common
     tasks_from: app-pre-req    
 
+# - name: run app pre location
+#   ansible.builtin.import.role:
+#     name: common
+#     tasks_from: app-pre-req    
+
 # # rm -rf /usr/share/nginx/html/*
 # - name: delete default website
 #   ansible.builtin.file:
