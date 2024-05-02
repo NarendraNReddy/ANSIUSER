@@ -8,22 +8,29 @@
     name: nginx
     state: started
     enabled: yes
-# rm -rf /usr/share/nginx/html/*
-- name: delete default website
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent    
 
-- name: delete html directory
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
+- name: run app pre location
+  ansible.builtin.import.role:
+    name: common
+    tasks_from: app-pre-req      
 
-- name: unarchive and download frontend code
-  ansible.builtin.unarchive:
-    src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes 
+# # rm -rf /usr/share/nginx/html/*
+# - name: delete default website
+#   ansible.builtin.file:
+#     path: /usr/share/nginx/html
+#     state: absent    
+
+# - name: delete html directory
+#   ansible.builtin.file:
+#     path: /usr/share/nginx/html
+#     state: directory
+
+# - name: unarchive and download frontend code
+#   ansible.builtin.unarchive:
+#     src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+#     dest: /usr/share/nginx/html
+#     remote_src: yes 
+
 - name: copy
   ansible.builtin.template:
     src: expense.conf.j2
