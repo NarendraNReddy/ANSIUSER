@@ -1,14 +1,12 @@
 - name: delete app directory
-  tags:
-    - deployment
+
   ansible.builtin.file:
     path: "{{app_location}}"
     state: absent
   #ignore_errors: yes  
 
 - name: create app directory 
-  tags:
-    - deployment
+
   ansible.builtin.file:
     path: "{{app_location}}"
     state: directory
@@ -18,8 +16,6 @@
 #    remote_src: yes
 
 - name: download and extract code
-  tags:
-    - deployment
   ansible.builtin.unarchive:
     src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-{{component}}-v2.zip
     dest: "{{app_location}}"
